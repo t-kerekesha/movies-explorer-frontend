@@ -1,0 +1,174 @@
+.search-form {
+  grid-area: search;
+  width: 100%;
+  padding: 70px 0;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto 226px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.search-form__container-text {
+  width: 100%;
+  min-height: 72px;
+  padding: 16px 30px 16px 16px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto min-content;
+  column-gap: 46px;
+  align-items: center;
+  background-color: var(--color-search);
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+}
+
+.search-form__container-short {
+  width: 100%;
+  min-height: 72px;
+  padding: 16px 16px 16px 0;
+  box-sizing: border-box;
+  display: grid;
+  align-items: center;
+  background-color: var(--color-search);
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
+
+.search-form__label-text {
+  padding-left: 44px;
+  box-sizing: border-box;
+  background-image: url('../../images/search-icon.svg');
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+.search-form__input {
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(20 / 18);
+  color: var(--color-font-second);
+}
+
+.search-form__input:focus {
+  outline: none;
+}
+
+.search-form__button-find {
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
+  background-color: transparent;
+  background-image: url('../../images/find-icon.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  transition: opacity .1s ease-out;
+}
+
+.search-form__button-find:hover,
+.search-form__button-find:active {
+  opacity: .8;
+}
+
+.search-form__label-short {
+  height: 100%;
+  padding-left: 29px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid var(--color-line);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: calc(18 / 13);
+}
+
+.search-form__checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  visibility: hidden;
+  clip-path: inset(0 0 0 0);
+}
+
+.search-form__visible-checkbox {
+  width: 36px;
+  height: 20px;
+  margin-right: 14px;
+  background-image: url('../../images/tumbler-off.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.search-form__checkbox:checked + .search-form__visible-checkbox {
+  background-image: url('../../images/tumbler-on.svg');
+}
+
+@media (max-width: 800px) {
+  .search-form {
+    padding: 80px 0 109px;
+    grid-template-columns: auto 207px;
+  }
+
+  .search-form__container-text {
+    padding: 16px 19px 16px 16px;
+  }
+
+  .search-form__label-short {
+    padding-left: 19px;
+  }
+}
+
+@media (max-width: 500px) {
+  .search-form {
+    padding: 80px 0 45px;
+    grid-template-areas:
+      'search'
+      'short';
+    grid-template-columns: 100%;
+    row-gap: 45px;
+  }
+
+  .search-form__container-text {
+    grid-area: search;
+    padding: 19px;
+    border-radius: 9px;
+  }
+
+  .search-form__container-short {
+    grid-area: short;
+    min-height: min-content;
+    padding: 0;
+    background-color: transparent;
+    justify-items: center;
+  }
+
+  .search-form__label-text {
+    padding: 0;
+    background-image: none;
+  }
+
+  .search-form__input {
+    font-size: 14px;
+    line-height: calc(20 / 14);
+  }
+
+  .search-form__label-short {
+    padding: 0;
+    border: none;
+  }
+
+  .search-form__label-short {
+    font-size: 11px;
+    line-height: calc(18 / 11);
+  }
+}
