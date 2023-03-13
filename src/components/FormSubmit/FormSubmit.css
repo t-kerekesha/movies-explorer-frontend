@@ -1,0 +1,27 @@
+.form-submit {
+  width: 100%;
+  min-height: 45px;
+  padding: 0;
+  margin-top: auto;
+  background-color: var(--color-blue);
+  color: var(--color-font-main);
+  border: none;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc(17 / 14);
+  cursor: pointer;
+  transition: opacity .1s ease-out;
+}
+
+.form-submit:hover,
+.form-submit:active {
+  opacity: .8;
+}
+
+@media (max-width: 500px) {
+  .form-submit {
+    font-size: 12px;
+    line-height: calc(15 / 12);
+  }
+}
