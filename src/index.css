@@ -1,0 +1,40 @@
+@import url('./vendor/normalize.css');
+@import url('./vendor/fonts/fonts.css');
+
+.body {
+  background-color: var(--color-background);
+  color: var(--color-font-main);
+
+  font-family: 'Inter', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+
+  /* colors */
+  --color-background: #202020;
+  --color-font-main: #fff;
+  --color-font-second: #8b8b8b;
+  --color-search: #2f2f2f;
+  --color-line: #424242;
+  --color-background-cards: #222;
+  --color-red: #EE3465;
+  --color-green: #3ddc84;
+  --color-black: #000;
+  --color-grey: #303030;
+  --color-blue: #4285F4;
+  --color-background-promo: #073042;
+  --color-line-landing: #dadada;
+  --color-background-techs: #272727;
+}
+
+.page {
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 1280px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

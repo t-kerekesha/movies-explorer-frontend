@@ -1,0 +1,24 @@
+.saved-movies {
+  grid-area: content;
+  width: 100%;
+  padding: 0 70px calc(245px - 10px);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-areas:
+    'search'
+    'cards';
+  justify-items: center;
+  grid-template-rows: min-content;
+}
+
+@media (max-width: 800px) {
+  .saved-movies {
+    padding: 0 30px 140px;
+  }
+}
+
+@media (max-width: 500px) {
+  .saved-movies {
+    padding: 0 10px 140px;
+  }
+}

@@ -1,0 +1,55 @@
+.movies {
+  grid-area: content;
+  width: 100%;
+  padding: 0 70px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-areas:
+    'search'
+    'cards'
+    'more-button';
+  justify-items: center;
+  grid-template-rows: min-content;
+}
+
+.movies__sectoin_more {
+  grid-area: more-button;
+  padding: 50px 0 80px;
+  box-sizing: border-box;
+}
+
+.movies__button-more {
+  padding: 0;
+  min-width: 320px;
+  min-height: 36px;
+  background-color: var(--color-search);
+  color: var(--color-font-main);
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(15 / 12);
+  cursor: pointer;
+  transition: opacity .1s ease-out;
+}
+
+.movies__button-more:hover,
+.movies__button-more:active {
+  opacity: .8;
+}
+
+@media (max-width: 800px) {
+  .movies {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .movies {
+    padding: 0 10px;
+  }
+
+  .movies__button-more {
+    min-width: 240px;
+  }
+}

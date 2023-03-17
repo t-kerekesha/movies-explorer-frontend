@@ -1,0 +1,77 @@
+.register {
+  grid-area: content;
+  width: 100%;
+  max-width: 396px;
+  height: 100%;
+  padding: 70px 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.register__form {
+  width: 100%;
+  min-height: 449px;
+  margin: 40px 0 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register__title {
+  margin: 0 0 40px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: calc(29 / 24);
+}
+
+.register__signin {
+  margin: 0;
+  align-self: center;
+  display: flex;
+  gap: 6px;
+  color: var(--color-font-second);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(17 / 14);
+}
+
+.register__signin-link {
+  text-decoration: none;
+  color: var(--color-blue);
+  transition: opacity .1s ease-out;
+}
+
+.register__signin-link:hover,
+.register__signin-link:active {
+  opacity: .7;
+}
+
+@media (max-width: 800px) {
+  .register {
+    padding: 232px 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .register {
+    max-width: 260px;
+    padding: 56px 0 30px;
+    align-items: center;
+  }
+
+  .register__form {
+    min-height: 577px;
+    margin: 50px 0 14px;
+    align-items: center;
+  }
+
+  .register__title {
+    margin: 0 0 80px;
+  }
+
+  .register__signin {
+    font-size: 12px;
+    line-height: calc(15 / 12);
+  }
+}
