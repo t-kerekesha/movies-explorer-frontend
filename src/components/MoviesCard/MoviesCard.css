@@ -57,6 +57,7 @@
   font-weight: 500;
   font-size: 13px;
   line-height: calc(16 / 13);
+  color: var(--color-font-main);
 }
 
 .movies-card__duration {
@@ -100,6 +101,10 @@
   display: none;
   background-size: 6.84px 6.72px;
   background-image: url('../../images/delete-icon.svg');
+}
+
+.link {
+  text-decoration: none;
 }
 
 @media (hover: hover) {

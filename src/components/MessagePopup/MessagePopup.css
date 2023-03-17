@@ -23,10 +23,12 @@
 .popup__container {
   width: 450px;
   min-height: 250px;
-  padding: 10px;
+  padding: 10px 10px 30px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  /* justify-content: space-between; */
   background-color: var(--color-background);
   border-radius: 3px;
 }
@@ -51,8 +53,19 @@
   opacity: .8;
 }
 
+.popup__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: calc(22 / 20);
+}
+
 .popup__message {
+  margin: 50px 0 0;
   text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: calc(20 / 16);
   color: var(--color-red);
 }
 
