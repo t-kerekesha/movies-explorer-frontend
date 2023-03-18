@@ -5,7 +5,7 @@ function PageNotFound() {
   const navigate = useNavigate();
 
   function goBack() {
-    navigate(-1);
+    navigate(-1, { replace: true });
   }
 
   return (

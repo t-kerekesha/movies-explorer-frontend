@@ -27,6 +27,25 @@ function App() {
   const [isMessagePopupOpen, setMessagePopupOpen] = useState(false);
   const [message, setMessage] = useState('');
 
+  // Авторизация пользователя
+  const login = useCallback((userData) => {
+    setLoading(true);
+    MainApi.login(userData.email, userData.password)
+      .then((dataFromServer) => {
+        if (dataFromServer._id) {
+          dataFromServer.email = userData.email;
+          setCurrentUser(dataFromServer);
+          setLoggedIn(true);
+          localStorage.setItem('userId', dataFromServer._id);
+        }
+      })
+      .catch((error) => {
+        setMessagePopupOpen(true);
+        setMessage(error.message);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   // Регистрация пользователя
   const register = useCallback((userData) => {
     console.log(userData)
@@ -42,25 +61,7 @@ function App() {
         setMessage(error.message);
       })
       .finally(() => setLoading(false));
-  }, []);
-
-  // Авторизация пользователя
-  const login = useCallback((userData) => {
-    setLoading(true);
-    MainApi.login(userData.email, userData.password)
-      .then((dataFromServer) => {
-        if (dataFromServer._id) {
-          dataFromServer.email = userData.email;
-          setCurrentUser(dataFromServer);
-          setLoggedIn(true);
-        }
-      })
-      .catch((error) => {
-        setMessagePopupOpen(true);
-        setMessage(error.message);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  }, [login]);
 
   // Редактирование профиля
   const updateUser = useCallback((userData) => {
@@ -84,10 +85,12 @@ function App() {
     MainApi.logout()
       .then(() => {
         setLoggedIn(false);
+        localStorage.removeItem('userId');
         localStorage.removeItem('movies');
         localStorage.removeItem('foundMovies');
         localStorage.removeItem('searchData');
         setCurrentUser(null);
+        setMovies([]);
       })
       .catch((error) => {
         setMessagePopupOpen(true);
@@ -112,7 +115,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    loginCheck();
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      loginCheck();
+    }
   }, [loginCheck]);
 
   // Загрузка фильмов из beatfilm-movies
@@ -181,7 +187,7 @@ function App() {
         setMessagePopupOpen(true);
         setMessage(error.message);
       });
-  });
+  }, [savedMovies]);
 
   // Удаление фильма из сохраненных
   const handleSaveDeleteClick = useCallback((movie) => {
@@ -198,7 +204,7 @@ function App() {
         setMessage(error.message);
       })
       .finally(() => setLoading(false));
-  });
+  }, [savedMovies]);
 
   function closePopup() {
     setMessagePopupOpen(false);
@@ -229,6 +235,7 @@ function App() {
                 onSaveClick={handleSaveClick}
                 onSaveDelete={handleSaveDeleteClick} />
               <Footer />
+              {!loggedIn && <Navigate to="/" replace />}
             </ProtectedRoute>
           } />
           <Route path="/saved-movies" element={
@@ -252,17 +259,21 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path="/signin" element={
-            <Login
-              loggedIn={loggedIn}
-              onLogin={login} />
+            loggedIn ?
+              <Navigate to="/movies" replace /> :
+              <Login
+                loggedIn={loggedIn}
+                onLogin={login} />
           } />
           <Route path="/signup" element={
-            <Register
-              loggedIn={loggedIn}
-              onRegister={register} />
+            loggedIn ?
+              <Navigate to="/movies" replace /> :
+              <Register
+                loggedIn={loggedIn}
+                onRegister={register} />
           } />
           <Route path="*" element={<PageNotFound />} />
-          {/* <Route path="/" exact element={loggedIn && <Navigate to="/movies" replace />} /> */}
+          {/* <Route path="/" element={!loggedIn && <Navigate to="/" replace />} /> */}
         </Routes>
 
         <MessagePopup

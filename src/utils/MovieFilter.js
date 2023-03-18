@@ -11,7 +11,6 @@ export function filterMovies(movies, searchData) {
     return movie.nameRU.toLowerCase().includes(keyword.toLowerCase())
       || movie.nameEN.toLowerCase().includes(keyword.toLowerCase());
   });
-  // console.log(searchResults);
   return searchResults;
 }
 

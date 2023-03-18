@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFormValidator } from '../../hooks/useFormValidator';
 import FormField from '../FormField/FormField';
 import FormSubmit from '../FormSubmit/FormSubmit';
 import Logo from '../Logo/Logo';
 import './Login.css';
 
-function Login({ loggedIn, onLogin }) {
+function Login({ onLogin }) {
   const [userData, setUserData] = useState({
     email: '',
     password: ''
@@ -26,10 +26,6 @@ function Login({ loggedIn, onLogin }) {
     event.preventDefault();
     onLogin(userData);
     resetForm();
-  }
-
-  if (loggedIn) {
-    return <Navigate to="/movies" replace />
   }
 
   return (
