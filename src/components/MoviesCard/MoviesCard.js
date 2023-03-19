@@ -1,5 +1,6 @@
 // import { useContext } from 'react';
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { getTimeFromMinutes } from '../../utils/getTimeFromMinutes';
 import './MoviesCard.css';
 
 function MoviesCard({ movie, savedMovies, onSaveClick, onSaveDelete, isSavedPage }) {
@@ -49,7 +50,7 @@ function MoviesCard({ movie, savedMovies, onSaveClick, onSaveDelete, isSavedPage
               {movie.nameRU}
             </h2>
             <p className="movies-card__duration">
-              {movie.duration}
+              {getTimeFromMinutes(movie.duration)}
             </p>
             {!isSavedPage ?
               <button className={cardSaveButtonClassName}
