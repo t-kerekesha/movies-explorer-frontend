@@ -21,6 +21,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoadingMovies, setLoadingMovies] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -123,7 +124,7 @@ function App() {
 
   // Загрузка фильмов из beatfilm-movies
   const getMovies = useCallback(() => {
-    setLoading(true);
+    setLoadingMovies(true);
     MoviesApi.getMovies()
       .then((movies) => {
         const recompileMovie = movies.map((movie) => {
@@ -148,7 +149,7 @@ function App() {
         setMessagePopupOpen(true);
         setMessage(MESSAGE_SERVER_ERROR);
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoadingMovies(false));
   }, []);
 
   useEffect(() => {
@@ -181,12 +182,14 @@ function App() {
 
   // Сохранение фильма
   const handleSaveClick = useCallback((movie) => {
+    setLoading(true);
     MainApi.saveMovie(movie)
       .then((newMovie) => setSavedMovies([newMovie, ...savedMovies]))
       .catch((error) => {
         setMessagePopupOpen(true);
         setMessage(error.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [savedMovies]);
 
   // Удаление фильма из сохраненных
@@ -232,9 +235,10 @@ function App() {
               <Movies
                 movies={movies}
                 savedMovies={savedMovies}
-                isLoading={isLoading}
                 onSaveClick={handleSaveClick}
-                onSaveDelete={handleSaveDeleteClick} />
+                onSaveDelete={handleSaveDeleteClick}
+                isLoadingMovies={false}
+                isLoading={isLoading} />
               <Footer />
             </ProtectedRoute>
           } />

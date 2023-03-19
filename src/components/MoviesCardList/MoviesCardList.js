@@ -1,7 +1,7 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-function MoviesCardList({ movies, savedMovies, onSaveClick, onSaveDelete, isSavedPage }) {
+function MoviesCardList({ movies, savedMovies, onSaveClick, onSaveDelete, isLoading, isSavedPage }) {
   return (
     <section className="cards">
       <ul className="cards__list">
@@ -11,6 +11,7 @@ function MoviesCardList({ movies, savedMovies, onSaveClick, onSaveDelete, isSave
             savedMovies={savedMovies}
             onSaveClick={onSaveClick}
             onSaveDelete={onSaveDelete}
+            isLoading={isLoading}
             isSavedPage={isSavedPage} />
         ))}
       </ul>

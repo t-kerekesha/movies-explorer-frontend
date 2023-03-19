@@ -3,7 +3,7 @@
 import { getTimeFromMinutes } from '../../utils/getTimeFromMinutes';
 import './MoviesCard.css';
 
-function MoviesCard({ movie, savedMovies, onSaveClick, onSaveDelete, isSavedPage }) {
+function MoviesCard({ movie, savedMovies, onSaveClick, onSaveDelete, isLoading, isSavedPage }) {
   // const currentUser = useContext(CurrentUserContext);
 
   function handleMovieClick(event) {
@@ -56,11 +56,13 @@ function MoviesCard({ movie, savedMovies, onSaveClick, onSaveDelete, isSavedPage
               <button className={cardSaveButtonClassName}
                 type="button"
                 onClick={handleSaveClick}
+                disabled={isLoading}
                 aria-label="Сохранить" />
               :
               <button className="movies-card__button movies-card__button_type_delete"
                 type="button"
                 onClick={handleDeleteClick}
+                disabled={isLoading}
                 aria-label="Удалить" />
             }
           </div>

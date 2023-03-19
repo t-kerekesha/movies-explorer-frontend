@@ -15,7 +15,7 @@ import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
-function Movies({ movies, savedMovies, onSaveClick, onSaveDelete, isLoading }) {
+function Movies({ movies, savedMovies, onSaveClick, onSaveDelete, isLoadingMovies, isLoading }) {
   const [foundMovies, setFoundMovies] = useState([]);
   const [searchData, setSearchData] = useState(null);
   const [downloadedMovies, setDownloadedMovies] = useState([]);
@@ -70,7 +70,7 @@ function Movies({ movies, savedMovies, onSaveClick, onSaveDelete, isLoading }) {
         onSearch={searchMovies}
         searchData={JSON.parse(localStorage.getItem('searchData'))}
         foundMovies={foundMovies} />
-      {isLoading ?
+      {isLoadingMovies ?
         <Preloader />
         :
         searchData ?
@@ -80,6 +80,7 @@ function Movies({ movies, savedMovies, onSaveClick, onSaveDelete, isLoading }) {
               savedMovies={savedMovies}
               onSaveClick={onSaveClick}
               onSaveDelete={onSaveDelete}
+              isLoading={isLoading}
               isSavedPage={false} />
             :
             <p className="movies__not-found">{MESSAGE_NOT_FOUND}</p>
