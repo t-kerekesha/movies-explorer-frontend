@@ -1,6 +1,6 @@
 // Адрес сервера
-// export const URL_API = 'https://api.awesome.nomoredomains.work';
-export const URL_API = 'http://localhost:3000';
+export const URL_API = 'https://api.awesome.nomoredomains.work';
+// export const URL_API = 'http://localhost:3000';
 
 // Адрес сервиса beatfilm-movies
 export const URL_BEATFILM_MOVIES = 'https://api.nomoreparties.co/beatfilm-movies';
@@ -12,7 +12,7 @@ export const MESSAGE_SERVER_ERROR = `Во время запроса произо
   Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`;
 export const MESSAGE_NOT_FOUND = 'Ничего не найдено';
 export const MESSAGE_KEYWORD_REQUIRED = 'Нужно ввести ключевое слово';
-export const MESSAGE_AUTH_SUCCESSFUL = "Вы успешно зарегистрировались!";
+export const MESSAGE_CHANGE_PROFILE = "Профиль изменен!";
 
 // breakpoints
 export const SCREEN_SMALL = 600;

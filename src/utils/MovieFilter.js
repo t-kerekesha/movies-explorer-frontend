@@ -1,16 +1,18 @@
 // Поиск и фильтрация фильмов
 export function filterMovies(movies, searchData) {
-  const { keyword, isShort } = searchData;
   let searchResults = movies;
-  if (isShort === true) {
+  if (movies && searchData) {
+    const { keyword, isShort } = searchData;
+    if (isShort === true) {
+      searchResults = searchResults.filter((movie) => {
+        return movie.duration <= 40;
+      });
+    }
     searchResults = searchResults.filter((movie) => {
-      return movie.duration <= 40;
+      return movie.nameRU.toLowerCase().includes(keyword.toLowerCase())
+        || movie.nameEN.toLowerCase().includes(keyword.toLowerCase());
     });
   }
-  searchResults = searchResults.filter((movie) => {
-    return movie.nameRU.toLowerCase().includes(keyword.toLowerCase())
-      || movie.nameEN.toLowerCase().includes(keyword.toLowerCase());
-  });
   return searchResults;
 }
 

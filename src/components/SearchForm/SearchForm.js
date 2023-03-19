@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MESSAGE_KEYWORD_REQUIRED } from '../../utils/constants';
 import './SearchForm.css';
 
-function SearchForm({ onSearch, searchData: searchFields }) {
+function SearchForm({ onSearch, searchData: searchFields, foundMovies }) {
   const [searchData, setSearchData] = useState({
     keyword: searchFields ? searchFields.keyword : '',
     isShort: searchFields ? searchFields.isShort : true,
   });
+
   const [error, setError] = useState('');
 
   function handleChange(event) {
@@ -20,10 +21,11 @@ function SearchForm({ onSearch, searchData: searchFields }) {
     setError('');
   }
 
-  // function handleChecked(event) {
-  // handleChange(event);
-  // onSearch(searchFields);
-  // }
+  useEffect(() => {
+    if (foundMovies?.length > 0) {
+      onSearch(searchData);
+    }
+  }, [searchData.isShort])
 
   function handleSearch(event) {
     event.preventDefault();
@@ -45,7 +47,7 @@ function SearchForm({ onSearch, searchData: searchFields }) {
           <input className="search-form__input"
             name="keyword"
             type="text"
-            value={searchData.keyword}
+            value={searchData?.keyword}
             onChange={handleChange}
             placeholder="Фильм"
             required />
@@ -61,7 +63,7 @@ function SearchForm({ onSearch, searchData: searchFields }) {
           <input className="search-form__checkbox"
             name="isShort"
             type="checkbox"
-            checked={searchData.isShort}
+            checked={searchData?.isShort}
             onChange={handleChange} />
           <span className="search-form__visible-checkbox" />
           Короткометражки

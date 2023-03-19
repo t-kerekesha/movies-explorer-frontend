@@ -22,3 +22,4 @@
 **Ссылки на проект и репозиторий**
 ------
 * [Ссылка на репозиторий](https://github.com/t-kerekesha/movies-explorer-frontend)
+* Frontend  https://awesome.nomoredomains.work

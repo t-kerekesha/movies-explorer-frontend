@@ -18,7 +18,7 @@ import './Movies.css';
 function Movies({ movies, savedMovies, onSaveClick, onSaveDelete, isLoading }) {
   const [foundMovies, setFoundMovies] = useState([]);
   const [searchData, setSearchData] = useState(null);
-  const [downloadedMovies, setDownloadedMovies] = useState(foundMovies);
+  const [downloadedMovies, setDownloadedMovies] = useState([]);
   const [showButtonMoreMovies, setShowButtonMoreMovies] = useState(false);
   const { width: screenWidth, isScreenSmall, isScreenMedium, isScreenLarge } = useResize();
 
@@ -57,8 +57,6 @@ function Movies({ movies, savedMovies, onSaveClick, onSaveDelete, isLoading }) {
 
   // Поиск и фильтрация фильмов
   const searchMovies = useCallback((searchData) => {
-    console.log(movies)
-    console.log(searchData)
     const searchResults = filterMovies(movies, searchData);
     setFoundMovies(searchResults);
     setSearchData(searchData);
@@ -70,19 +68,23 @@ function Movies({ movies, savedMovies, onSaveClick, onSaveDelete, isLoading }) {
     <main className="movies">
       <SearchForm
         onSearch={searchMovies}
-        searchData={JSON.parse(localStorage.getItem('searchData'))} />
+        searchData={JSON.parse(localStorage.getItem('searchData'))}
+        foundMovies={foundMovies} />
       {isLoading ?
         <Preloader />
         :
-        foundMovies?.length > 0 ?
-          <MoviesCardList
-            movies={downloadedMovies}
-            savedMovies={savedMovies}
-            onSaveClick={onSaveClick}
-            onSaveDelete={onSaveDelete}
-            isSavedPage={false} />
+        searchData ?
+          foundMovies?.length > 0 ?
+            <MoviesCardList
+              movies={downloadedMovies}
+              savedMovies={savedMovies}
+              onSaveClick={onSaveClick}
+              onSaveDelete={onSaveDelete}
+              isSavedPage={false} />
+            :
+            <p className="movies__not-found">{MESSAGE_NOT_FOUND}</p>
           :
-          <p className="movies__not-found">{MESSAGE_NOT_FOUND}</p>
+          <></>
       }
       <section className="movies__sectoin_more">
         <button className={`movies__button-more ${showButtonMoreMovies && "movies__button-more_visible"}`}

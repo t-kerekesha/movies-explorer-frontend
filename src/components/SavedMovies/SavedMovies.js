@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   MESSAGE_NOT_FOUND
 } from '../../utils/constants';
@@ -9,17 +9,27 @@ import './SavedMovies.css';
 
 function SavedMovies({ movies, onSaveDelete }) {
   const [foundMovies, setFoundMovies] = useState([]);
-  const [isFound, setFound] = useState(false);
+  const [isSearch, setSearch] = useState(false);
+  const [searchData, setSearchData] = useState(null);
 
   const searchMovies = useCallback((searchData) => {
     setFoundMovies(filterMovies(movies, searchData));
-    setFound(true);
+    setSearchData(searchData);
+    setSearch(true);
   }, [movies]);
+
+  useEffect(() => {
+    if (isSearch) {
+      setFoundMovies(filterMovies(movies, searchData));
+    }
+  }, [movies, isSearch, searchData]);
 
   return (
     <main className="saved-movies">
-      <SearchForm onSearch={searchMovies} />
-      {!isFound ?
+      <SearchForm
+        onSearch={searchMovies}
+        foundMovies={foundMovies} />
+      {!isSearch ?
         <MoviesCardList
           movies={movies}
           onSaveDelete={onSaveDelete}

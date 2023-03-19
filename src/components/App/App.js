@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { MESSAGE_AUTH_SUCCESSFUL, MESSAGE_SERVER_ERROR, URL_DATA } from '../../utils/constants';
+import { MESSAGE_CHANGE_PROFILE, MESSAGE_SERVER_ERROR, URL_DATA } from '../../utils/constants';
 import MessagePopup from '../MessagePopup/MessagePopup';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -70,7 +70,7 @@ function App() {
       .then((dataFromServer) => {
         setCurrentUser(dataFromServer);
         setMessagePopupOpen(true);
-        setMessage(MESSAGE_AUTH_SUCCESSFUL);
+        setMessage(MESSAGE_CHANGE_PROFILE);
       })
       .catch((error) => {
         setMessagePopupOpen(true);
@@ -216,13 +216,14 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={
-            <>
+            <ProtectedRoute
+              loggedIn={loggedIn} onlyMainPage>
               <Header
                 isLoggedIn={loggedIn}
-                isPromoPage="true" />
+                isPromoPage={true} />
               <Main />
               <Footer />
-            </>
+            </ProtectedRoute>
           } />
           <Route path="/movies" element={
             <ProtectedRoute
@@ -235,7 +236,6 @@ function App() {
                 onSaveClick={handleSaveClick}
                 onSaveDelete={handleSaveDeleteClick} />
               <Footer />
-              {!loggedIn && <Navigate to="/" replace />}
             </ProtectedRoute>
           } />
           <Route path="/saved-movies" element={
@@ -273,7 +273,6 @@ function App() {
                 onRegister={register} />
           } />
           <Route path="*" element={<PageNotFound />} />
-          {/* <Route path="/" element={!loggedIn && <Navigate to="/" replace />} /> */}
         </Routes>
 
         <MessagePopup
