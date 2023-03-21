@@ -5,7 +5,7 @@ import './SearchForm.css';
 function SearchForm({ onSearch, searchData: searchFields, foundMovies }) {
   const [searchData, setSearchData] = useState({
     keyword: searchFields ? searchFields.keyword : '',
-    isShort: searchFields ? searchFields.isShort : true,
+    isShort: searchFields ? searchFields.isShort : false,
   });
 
   const [error, setError] = useState('');
