@@ -12,7 +12,8 @@ export const MESSAGE_SERVER_ERROR = `Во время запроса произо
   Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`;
 export const MESSAGE_NOT_FOUND = 'Ничего не найдено';
 export const MESSAGE_KEYWORD_REQUIRED = 'Нужно ввести ключевое слово';
-export const MESSAGE_CHANGE_PROFILE = "Профиль изменен!";
+export const MESSAGE_INVALID_EMAIL = 'Некорректный email';
+export const MESSAGE_CHANGE_PROFILE = 'Профиль изменен!';
 
 // breakpoints
 export const SCREEN_SMALL = 600;
