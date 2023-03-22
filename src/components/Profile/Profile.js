@@ -21,11 +21,6 @@ function Profile({ loggedIn, onUpdateUser, onLogout }) {
     handleErrors(event);
   }
 
-  // function handleFocus(event) {
-  //   event.target.parentNode.focus();
-  //   event.target.focus();
-  // }
-
   const hasChanges = useCallback(() => {
     if (userData.name !== currentUser.name ||
       userData.email !== currentUser.email) {
