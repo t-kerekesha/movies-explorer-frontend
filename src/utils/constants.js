@@ -26,3 +26,6 @@ export const QUANTITY_MOVIES_SCREEN_SMALL = 5;
 export const LOADING_STEP_SCREEN_LARGE = 3;
 export const LOADING_STEP_SCREEN_MEDIUM = 2;
 export const LOADING_STEP_SCREEN_SMALL = 2;
+
+// constants
+export const DURATION_OF_SHORT_MOVIES = 40;

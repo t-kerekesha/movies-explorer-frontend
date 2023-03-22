@@ -1,3 +1,5 @@
+import { DURATION_OF_SHORT_MOVIES } from "./constants";
+
 // Поиск и фильтрация фильмов
 export function filterMovies(movies, searchData) {
   let searchResults = movies;
@@ -5,7 +7,7 @@ export function filterMovies(movies, searchData) {
     const { keyword, isShort } = searchData;
     if (isShort === true) {
       searchResults = searchResults.filter((movie) => {
-        return movie.duration <= 40;
+        return movie.duration <= DURATION_OF_SHORT_MOVIES;
       });
     }
     searchResults = searchResults.filter((movie) => {
