@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormValidator } from '../../hooks/useFormValidator';
 import './Profile.css';
 
-function Profile({loggedIn, onUpdateUser, onLogout }) {
+function Profile({ loggedIn, onUpdateUser, onLogout }) {
   const currentUser = useContext(CurrentUserContext);
   const [userData, setUserData] = useState({
     name: currentUser?.name,
@@ -25,6 +25,23 @@ function Profile({loggedIn, onUpdateUser, onLogout }) {
   //   event.target.parentNode.focus();
   //   event.target.focus();
   // }
+
+  const hasChanges = useCallback(() => {
+    if (userData.name !== currentUser.name ||
+      userData.email !== currentUser.email) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [userData, currentUser]);
+
+  useEffect(() => {
+    if (isValid && hasChanges()) {
+      document.forms.profile.querySelector('button[type=submit]').disabled = false;
+    } else {
+      document.forms.profile.querySelector('button[type=submit]').disabled = true;
+    }
+  }, [isValid, hasChanges]);
 
   function handleSubmit(event) {
     event.preventDefault();
