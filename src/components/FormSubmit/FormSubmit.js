@@ -1,9 +1,10 @@
 import './FormSubmit.css';
 
-function FormSubmit({ buttonText }) {
+function FormSubmit({ buttonText, disabled }) {
   return (
     <button className="form-submit"
-      type="submit">
+      type="submit"
+      disabled={disabled}>
       {buttonText}
     </button>
   );

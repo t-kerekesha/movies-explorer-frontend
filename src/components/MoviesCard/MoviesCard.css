@@ -57,6 +57,7 @@
   font-weight: 500;
   font-size: 13px;
   line-height: calc(16 / 13);
+  color: var(--color-font-main);
 }
 
 .movies-card__duration {
@@ -87,6 +88,11 @@
   opacity: .8;
 }
 
+.profile__button:disabled {
+  opacity: .2;
+  cursor: auto;
+}
+
 .movies-card__button_type_save {
   background-size: 14px 12px;
   background-image: url('../../images/save-icon.svg');
@@ -100,6 +106,10 @@
   display: none;
   background-size: 6.84px 6.72px;
   background-image: url('../../images/delete-icon.svg');
+}
+
+.link {
+  text-decoration: none;
 }
 
 @media (hover: hover) {

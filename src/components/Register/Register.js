@@ -1,16 +1,20 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+// import { useForm } from '../../hooks/useForm';
+import { useFormValidator } from '../../hooks/useFormValidator';
 import FormField from '../FormField/FormField';
 import FormSubmit from '../FormSubmit/FormSubmit';
 import Logo from '../Logo/Logo';
 import './Register.css';
 
-function Register() {
+function Register({ loggedIn, onRegister }) {
+  // const { values, changeValues } = useForm();
   const [userData, setUserData] = useState({
-    name: 'Виталий',
-    email: 'pochta@yandex.ru',
-    password: '12345678111111'
+    name: '',
+    email: '',
+    password: ''
   });
+  const { handleErrors, errors, isValid, resetForm } = useFormValidator();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -18,10 +22,17 @@ function Register() {
       ...userData,
       [name]: value
     });
+    handleErrors(event);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    onRegister(userData);
+    resetForm();
+  }
+
+  if (loggedIn) {
+    return <Navigate to="/movies" replace />
   }
 
   return (
@@ -39,20 +50,25 @@ function Register() {
           value={userData?.name}
           handleChange={handleChange}
           minLength="2"
-          maxLength="30" />
+          maxLength="30"
+          errors={errors} />
         <FormField
           label="E-mail"
           name="email"
           type="email"
           value={userData?.email}
-          handleChange={handleChange} />
+          handleChange={handleChange}
+          errors={errors} />
         <FormField
           label="Пароль"
           name="password"
           type="password"
           value={userData?.password}
-          handleChange={handleChange} />
-        <FormSubmit buttonText="Зарегистрироваться" />
+          handleChange={handleChange}
+          errors={errors} />
+        <FormSubmit
+          buttonText="Зарегистрироваться"
+          disabled={!isValid} />
       </form>
       <p className="register__signin">Уже зарегистрированы?
         <Link to="/signin"

@@ -19,6 +19,11 @@
   opacity: .8;
 }
 
+.form-submit:disabled {
+  opacity: .2;
+  cursor: auto;
+}
+
 @media (max-width: 500px) {
   .form-submit {
     font-size: 12px;

@@ -1,87 +1,31 @@
-// начальные фильмы
-export const initialMovies = [
-  {
-    nameRU: '33 слова о дизайне',
-    image: new URL('../images/movies/movie1.png', import.meta.url),
-    duration: '1ч 47м',
-    movieId: 1,
-    isSaved: true,
-  },
-  {
-    nameRU: 'Киноальманах «100 лет дизайна»',
-    image: new URL('../images/movies/movie2.png', import.meta.url),
-    duration: '1ч 3м',
-    movieId: 2,
-    isSaved: true,
-  },
-  {
-    nameRU: 'В погоне за Бенкси',
-    image: new URL('../images/movies/movie3.png', import.meta.url),
-    duration: '1ч 42м',
-    movieId: 3,
-    isSaved: false,
-  },
-  {
-    nameRU: 'Баския: Взрыв реальности',
-    image: new URL('../images/movies/movie4.png', import.meta.url),
-    duration: '1ч 21м',
-    movieId: 4,
-    isSaved: false,
-  },
-  {
-    nameRU: 'Бег это свобода',
-    image: new URL('../images/movies/movie5.png', import.meta.url),
-    duration: '1ч 44м',
-    movieId: 5,
-    isSaved: false,
-  },
-  {
-    nameRU: 'Книготорговцы',
-    image: new URL('../images/movies/movie6.png', import.meta.url),
-    duration: '1ч 37м',
-    movieId: 6,
-    isSaved: false,
-  },
-  {
-    nameRU: 'Когда я думаю о Германии ночью',
-    image: new URL('../images/movies/movie7.png', import.meta.url),
-    duration: '1ч 56м',
-    movieId: 7,
-    isSaved: false,
-  },
-  {
-    nameRU: 'Gimme Danger: История Игги и The Stooge...',
-    image: new URL('../images/movies/movie8.png', import.meta.url),
-    duration: '1ч 59м',
-    movieId: 8,
-    isSaved: false,
-  },
-  {
-    nameRU: 'Дженис: Маленькая девочка грустит',
-    image: new URL('../images/movies/movie9.png', import.meta.url),
-    duration: '1ч 42м',
-    movieId: 9,
-    isSaved: false,
-  },
-  {
-    nameRU: 'Соберись перед прыжком',
-    image: new URL('../images/movies/movie10.png', import.meta.url),
-    duration: '1ч 10м',
-    movieId: 10,
-    isSaved: false,
-  },
-  {
-    nameRU: 'Пи Джей Харви: A dog called money',
-    image: new URL('../images/movies/movie11.png', import.meta.url),
-    duration: '1ч 4м',
-    movieId: 11,
-    isSaved: false,
-  },
-  {
-    nameRU: 'По волнам: Искусство звука в кино',
-    image: new URL('../images/movies/movie12.png', import.meta.url),
-    duration: '1ч 7м',
-    movieId: 12,
-    isSaved: false,
-  },
-];
+// Адрес сервера
+export const URL_API = 'https://api.awesome.nomoredomains.work';
+// export const URL_API = 'http://localhost:3000';
+
+// Адрес сервиса beatfilm-movies
+export const URL_BEATFILM_MOVIES = 'https://api.nomoreparties.co/beatfilm-movies';
+
+// Адрес сервера с данными
+export const URL_DATA = 'https://api.nomoreparties.co';
+
+export const MESSAGE_SERVER_ERROR = `Во время запроса произошла ошибка.
+  Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`;
+export const MESSAGE_NOT_FOUND = 'Ничего не найдено';
+export const MESSAGE_KEYWORD_REQUIRED = 'Нужно ввести ключевое слово';
+export const MESSAGE_INVALID_EMAIL = 'Некорректный email';
+export const MESSAGE_CHANGE_PROFILE = 'Профиль изменен!';
+
+// breakpoints
+export const SCREEN_SMALL = 600;
+export const SCREEN_MEDIUM = 800;
+export const SCREEN_LARGE = 1000;
+
+export const QUANTITY_MOVIES_SCREEN_LARGE = 12;
+export const QUANTITY_MOVIES_SCREEN_MEDIUM = 8;
+export const QUANTITY_MOVIES_SCREEN_SMALL = 5;
+export const LOADING_STEP_SCREEN_LARGE = 3;
+export const LOADING_STEP_SCREEN_MEDIUM = 2;
+export const LOADING_STEP_SCREEN_SMALL = 2;
+
+// constants
+export const DURATION_OF_SHORT_MOVIES = 40;

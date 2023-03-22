@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { MESSAGE_KEYWORD_REQUIRED } from '../../utils/constants';
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm({ onSearch, searchData: searchFields, foundMovies }) {
   const [searchData, setSearchData] = useState({
-    text: '',
-    isShort: true
+    keyword: searchFields ? searchFields.keyword : '',
+    isShort: searchFields ? searchFields.isShort : false,
   });
+
+  const [error, setError] = useState('');
 
   function handleChange(event) {
     const { name } = event.target;
@@ -15,10 +18,23 @@ function SearchForm() {
       ...searchData,
       [name]: value
     });
+    setError('');
   }
+
+  useEffect(() => {
+    if (foundMovies?.length > 0) {
+      onSearch(searchData);
+    }
+  }, [searchData.isShort])
 
   function handleSearch(event) {
     event.preventDefault();
+    if (searchData.keyword) {
+      onSearch(searchData);
+      setError('');
+    } else {
+      setError(MESSAGE_KEYWORD_REQUIRED);
+    }
   }
 
   return (
@@ -29,12 +45,15 @@ function SearchForm() {
       <div className="search-form__container-text">
         <label className="search-form__label-text">
           <input className="search-form__input"
-            name="text"
+            name="keyword"
             type="text"
-            value={searchData.text}
+            value={searchData?.keyword}
             onChange={handleChange}
             placeholder="Фильм"
             required />
+          <span className="search-form__input-error keyword-input-error">
+            {error}
+          </span>
         </label>
         <button className="search-form__button-find"
           type="submit" />
@@ -44,9 +63,9 @@ function SearchForm() {
           <input className="search-form__checkbox"
             name="isShort"
             type="checkbox"
-            checked={searchData.isShort}
+            checked={searchData?.isShort}
             onChange={handleChange} />
-            <span className="search-form__visible-checkbox" />
+          <span className="search-form__visible-checkbox" />
           Короткометражки
         </label>
       </div>

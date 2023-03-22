@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import './ErrorMessagePopup.css';
+import './MessagePopup.css';
 
-function ErrorMessagePopup({ isOpen, onClose, message }) {
+function MessagePopup({ isOpen, onClose, message }) {
   useEffect(() => {
     document.addEventListener('keydown', handleEscClose);
     return () => {
@@ -32,10 +32,11 @@ function ErrorMessagePopup({ isOpen, onClose, message }) {
           type="button"
           aria-label="Закрыть"
           onMouseDown={close} />
+        <h2 className="popup__title">Внимание</h2>
         <p className="popup__message">{message}</p>
       </div>
     </div>
   );
 }
 
-export default ErrorMessagePopup;
+export default MessagePopup;
