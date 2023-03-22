@@ -237,7 +237,7 @@ function App() {
                 savedMovies={savedMovies}
                 onSaveClick={handleSaveClick}
                 onSaveDelete={handleSaveDeleteClick}
-                isLoadingMovies={false}
+                isLoadingMovies={isLoadingMovies}
                 isLoading={isLoading} />
               <Footer />
             </ProtectedRoute>
